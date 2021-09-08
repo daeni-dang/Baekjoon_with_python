@@ -1,0 +1,10 @@
+import sys
+n = int(sys.stdin.readline())
+point = []
+for i in range(n):
+    x, y = map(int, sys.stdin.readline().split())
+    point.append([y, x])
+point.sort()
+
+for i in point:
+    sys.stdout.write(str(i[1]) + ' ' + str(i[0]) + '\n')
