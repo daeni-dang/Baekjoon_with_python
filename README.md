@@ -1,2 +1,4 @@
-# Baekjoon_with_python
-동국대학교 컴퓨터공학과
+# Problem Solving
+- BOJ step
+- Programmers
+- 이것이 코딩 테스트다
