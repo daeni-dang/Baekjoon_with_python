@@ -1,25 +1,16 @@
 from collections import deque
 
-def getRGpoint(board):
+def getRpoint(board):
     R = []
-    G = []
-    cnt = 0
     for i, col in enumerate(board):
         findR = col.find("R")
-        findG = col.find("G")
         if findR != -1:
             R = [i, findR]
-            cnt += 1
-        if findG != -1:
-            G = [i, findG]
-            cnt += 1
-        if cnt == 2:
-            break
-    return R, G
+    return R
 
 def solution(board):
     answer = 0
-    R, G = getRGpoint(board)
+    R = getRpoint(board)
     
     n, m = len(board), len(board[0])
     cnt = [[10001] * m for _ in range(n)]
