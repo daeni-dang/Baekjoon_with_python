@@ -1,10 +1,7 @@
-n = int(input())
-coin = [500, 100, 50, 10]
-coin_idx = 0
-answer = 0
+n, m, k = map(int, input().split())
+arr = list(map(int, input().split()))
 
-for c in coin:
-    answer += n // c
-    n %= c
+arr.sort(reverse=True)
 
+answer = ((m - (m // (k + 1))) * arr[0]) + ((m // (k + 1)) * arr[1])
 print(answer)
