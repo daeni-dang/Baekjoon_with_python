@@ -1,15 +1,14 @@
-import sys
+N, M = map(int, input().split())
 
-n, m = map(int, sys.stdin.readline().split())
+arr = []
 
-p = []
-
-def f():
-    if len(p) == m:
-        sys.stdout.write(' '.join(map(str, p)) + '\n')
+def solution():
+    if len(arr) == M:
+        print(' '.join(arr))
         return
-    for i in range(1, n + 1):
-        p.append(i)
-        f()
-        p.pop()
-f()
+    for i in range(1, N + 1):
+        arr.append(str(i))
+        solution()
+        arr.pop()
+
+solution()
