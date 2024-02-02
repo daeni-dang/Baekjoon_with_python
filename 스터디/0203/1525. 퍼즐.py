@@ -2,12 +2,6 @@ import sys
 from collections import deque
 input = sys.stdin.readline
 
-def findBlank(board):
-    for i in range(3):
-        for j in range(3):
-            if board[i][j] == 0:
-                return i, j
-
 def getCurRight(board):
     cnt = 0
     for i in range(3):
@@ -17,26 +11,24 @@ def getCurRight(board):
     return cnt
 
 def solution(board):
-    dx = [1, -1, 0, 0]
-    dy = [0, 0, 1, -1]
-    sx, sy = findBlank(board)
-    q = deque([[sx, sy, 0, board]])
+    visited = [[False] * 3 for _ in range(3)]
+    q = deque([[0, 0, 0]])
     while q:
-        cx, cy, dist, board = q.popleft()
-        print(cx, cy)
-        # for b in board:
-        #     print(b)
-        # print()
-        if getCurRight(board) == 8:
-            return dist
+        cx, cy, dist = q.popleft()
         for i in range(4):
             nx = cx + dx[i]
             ny = cy + dy[i]
             if nx >= 3 or nx < 0 or ny >= 3 or ny < 0:
                 continue
-            board[nx][ny] = 0
-            board[cx][cy] = board[nx][ny]
-            q.append([nx, ny, dist + 1, board])
+            if not visited[nx][ny]:
+                visited[nx][ny] = True
+                board[nx][ny], board[cx][cy] = board[cx][cy], board[nx][ny]
+                if getCurRight(board) == 8:
+                    return dist
+                for b in board:
+                    print(b)
+                print()
+                q.append([nx, ny, dist + 1])
     return -1
 
 def main():
@@ -46,4 +38,6 @@ def main():
     print(solution(board))
 
 if __name__ == "__main__":
+    dx = [0, 1, 0, -1]
+    dy = [-1, 0, 1, 0]
     main()
